@@ -17,7 +17,7 @@
             class="w-3 h-3 bg-red border border-black rounded-full bg-violet-300"
           ></div>
           <div
-            class="w-3 h-3 bg-red border border-black rounded-full bg-yellow-100"
+            class="w-3 h-3 bg-red border border-black rounded-full bg-yellow-200"
           ></div>
         </span>
       </div>
@@ -36,16 +36,6 @@ export default {
       default: "49.99",
       type: String,
     },
-    // primaryPicture: {
-    //   default:
-    //     "https://www.my-jewellery.com/media/catalog/product/cache/0021537bae359a5c22a4f8c00d758a48/b/l/black-blouse-with-beige-embroidery-front.jpg",
-    //   type: String,
-    // },
-    // secondaryPicture: {
-    //   default:
-    //     "https://www.my-jewellery.com/media/catalog/product/cache/0021537bae359a5c22a4f8c00d758a48/b/l/black-blouse-with-beige-embroidery-close-up.jpg",
-    //   type: String,
-    // },
   },
   data() {
     return {
