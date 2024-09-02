@@ -9,7 +9,10 @@ module.exports = {
     "./error.vue",
   ],
   theme: {
-    extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+  ],
 }
