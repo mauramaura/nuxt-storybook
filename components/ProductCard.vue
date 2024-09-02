@@ -7,9 +7,9 @@
         @mouseleave="hover = false"
       />
       <div class="p-2 flex flex-col gap-4">
-        <p>{{ title }}</p>
+        <p class="max-w-sm overflow-hidden text-ellipsis">{{ title }}</p>
         <p class="font-semibold">€{{ price }}</p>
-        <span class="flex gap-1">
+        <span v-if="showVariants" class="flex gap-1">
           <div
             class="w-3 h-3 bg-red border border-black rounded-full bg-black"
           ></div>
@@ -36,6 +36,10 @@ export default {
       default: "49.99",
       type: String,
     },
+    showVariants: {
+      default: true,
+      type: Boolean,
+    }
   },
   data() {
     return {

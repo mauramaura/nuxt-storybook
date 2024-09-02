@@ -9,6 +9,7 @@ export default {
     argTypes: {
         title: { control: {type: 'text'} },
         price: { control: {type: 'text'} },
+        showVariants: { control: { type: 'boolean'} },
         primaryPicture: { control: {type: 'text'} },
         secondaryPicture: { control: {type: 'text'} },
     },
