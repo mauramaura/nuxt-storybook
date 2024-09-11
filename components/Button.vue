@@ -1,6 +1,6 @@
 <template>
   <div class="flex gap-4 m-8">
-    <UButton loading color="black" size="md">Example button</UButton>
+    <UButton class="w-3" loading color="black" size="md">Example button</UButton>
     <UButton color="black" icon="material-symbols:add">Add to cart</UButton>
     <UButton square color="white" icon="material-symbols:favorite-outline"></UButton>
     <UInput
