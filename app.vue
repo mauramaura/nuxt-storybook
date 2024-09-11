@@ -1,6 +1,13 @@
+<script setup lang="ts">
+import ProductCard from './components/ProductCard.vue';
+</script>
+
 <template>
   <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <ProductCard class="m-4" />
+    <MJButton class="m-4" />
+    <Dropdown class="m-4"></Dropdown>
+    <Button></Button>
+    <Accordion />
   </div>
 </template>
