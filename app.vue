@@ -4,10 +4,12 @@ import ProductCard from './components/ProductCard.vue';
 
 <template>
   <div>
-    <ProductCard class="m-4" />
+    <!-- <ProductCard class="m-4" />
     <MJButton class="m-4" />
     <Dropdown class="m-4"></Dropdown>
+    
+    <Accordion /> -->
+
     <Button></Button>
-    <Accordion />
   </div>
 </template>

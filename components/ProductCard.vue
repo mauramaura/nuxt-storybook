@@ -26,7 +26,9 @@
 </template>
 
 <script lang="ts">
+
 export default {
+
   props: {
     title: {
       default: "Black blouse with beige embroidery",
@@ -59,6 +61,8 @@ export default {
       }
     },
   },
+
+  
 };
 </script>
 
