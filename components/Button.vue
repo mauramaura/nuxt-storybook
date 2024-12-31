@@ -18,57 +18,73 @@
     <UIcon name="material-symbols-light:star-rate" class="w-8 h-8 bg-pink-200" />
     (1)
   </div> -->
-  <h2 class="text-3xl m-4 bg-red-500 p-4 rounded">Blog posts</h2>
-  <div class="flex flex-wrap">
-    <div
-    v-for="post in posts"
-    class="m-4 flex-wrap gap-8 border border-red-400 p-4 rounded w-96"
-  >  
-  <!-- <button class="float-end">
-    <UIcon name="lucide:trash-2" class="w-5 h-5" />
-  </button> -->
-    
-    <div class="flex flex-col gap-2">
-      <p class="text-xl">{{ post.title }}</p>
-      <p>{{ post.content }}</p>
-    </div>
-  </div>
-
-  
-  </div>
-  <div class="m-4 w-96 ">
+  <h2 class="text-3xl m-4 bg-violet-500 p-4 rounded">Blog posts</h2>
+  <div class="m-4 w-96">
     <form @submit.prevent="submitForm" class="flex flex-col gap-4">
       <div class="flex flex-col">
-        <label for="name">Title</label>
+        <label for="name" class="mb-2">Title</label>
         <UInput
           type="text"
           v-model="formData.title"
           id="title"
           placeholder="Enter your title here"
+          size="xl"
         />
       </div>
       <div class="flex flex-col">
-        <label for="content">Content</label>
+        <label for="content" class="mb-2">Content</label>
         <UTextarea
           id="message"
           v-model="formData.content"
           placeholder="Your post..."
+          size="xl"
         />
       </div>
       <div>
-        
-        <UButton class="mt-4" type="submit">Submit Form</UButton>
+        <UButton
+          class="mt-4 w-full flex justify-center"
+          type="submit"
+          color="violet"
+          >Submit Form</UButton
+        >
       </div>
     </form>
   </div>
+  <div class="flex flex-wrap">
+    <div
+      v-for="post in posts"
+      class="m-4 flex-wrap gap-8 border border-violet-400 p-4 rounded w-96 h-80"
+    >
+      <button class="float-end">
+        <UIcon name="lucide:trash-2" class="w-5 h-5" @click="isOpen = true" />
+      </button>
+      <UModal v-model="isOpen">
+      <div class="flex flex-col p-4 items-center gap-5">
+        <p>Are you sure you want to delete this post?</p>
+        <div class="flex gap-9">
+          <UButton color="red" @click="deletePost(post.id)">Yes</UButton>
+          <UButton>No</UButton>
+        </div>
+      </div>
+    </UModal>
 
- 
+      <div class="flex flex-col gap-2">
+        <p class="text-xl">{{ post.title }}</p>
+        <p>{{ post.content }}</p>
+        <p>
+          This is the ID: <strong>{{ post.id }}</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+  
 </template>
 
 <script lang="ts" setup>
-let posts;
+import { ref, onMounted } from "vue";
 
-import { ref } from "vue";
+const posts = ref([]);
+const isOpen = ref(false);
 
 const formData = ref({
   title: "",
@@ -86,10 +102,33 @@ const submitForm = async () => {
       },
     }
   );
-
   console.log(responseData.value);
-  formData.title = "";
-  formData.content = "";
+  formData.value.title = "";
+  formData.value.content = "";
+  getData();
+};
+
+const deletePost = async (id) => {
+  console.log("Deleting post with id:", id);
+
+  try {
+    const { data: responseData, error } = await useFetch(
+      `http://localhost:8000/posts/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    getData();
+
+    if (error) {
+      console.error("Error deleting post:", error);
+      return;
+    }
+
+    console.log("Post deleted successfully:", responseData);
+  } catch (err) {
+    console.error("An error occurred:", err);
+  }
 };
 
 async function getData() {
@@ -101,14 +140,16 @@ async function getData() {
     }
 
     const json = await response.json();
-    posts = json;
-    console.log(posts, "posts");
+    posts.value = json;
+    console.log(posts.value)
   } catch (error) {
     console.error(error.message);
   }
 }
 
-getData();
+onMounted(() => {
+  getData();
+});
 </script>
 
 <style></style>
