@@ -1,5 +1,6 @@
 <template>
     <button class="w-40 h-10 bg-fuchsia-400 text-white rounded-md">{{ label }}</button>
+    <UButton color="primary" variant="solid">Button</UButton>
 </template>
 <script>
 export default {
